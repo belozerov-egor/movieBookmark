@@ -1,0 +1,13 @@
+.sideBar {
+  width: 30%;
+  height: 100vh;
+  padding-top: 20px;
+
+  .linkBlock {
+    display: flex;
+    flex-direction: column;
+    a {
+      margin-bottom: 10px;
+    }
+  }
+}

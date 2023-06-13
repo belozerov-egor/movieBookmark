@@ -1,0 +1,11 @@
+body {
+    background: #1B0301;
+    padding: 0 20px;
+}
+.mainBlock {
+    display: flex;
+}
+a {
+    text-decoration: none;
+    сcolor: white;
+}
