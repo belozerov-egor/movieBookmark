@@ -3,11 +3,13 @@ import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {kinopoiskReducer} from "../reducer/kinopoisk.ts";
 import { searchReducer} from "../reducer/searchReducer.ts";
 import {selectedFilmsReducer} from "../reducer/selectedFilmReducer.ts";
+import { movieReducer } from "../reducer/movieReducer.ts";
 
 const RootReducers = combineReducers({
         films: kinopoiskReducer,
         searchFilms: searchReducer,
-        selectedFilms: selectedFilmsReducer
+        selectedFilms: selectedFilmsReducer,
+        movie: movieReducer
 })
 
 

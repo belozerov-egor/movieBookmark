@@ -3,15 +3,13 @@ import {FilmsBlock} from "./component/FlimsBlock/FilmsBlock.tsx";
 import {SideBar} from "./component/SideBar/SideBar.tsx";
 import {SearchBlock} from "./component/SearchBlock/SearchBlock.tsx";
 import {Route, Routes} from "react-router-dom";
-import {useEffect} from "react";
-import {apiAuth} from "./api/apiSelectedFilms.ts";
+import { SelectedBlock } from './component/SelectedBlock/SelectedBlock.tsx';
+import { FilmCard } from './component/Singlefilm/SingleFilm.tsx';
 
 
 
 function App() {
-    useEffect(()=> {
-        apiAuth.auth()
-    },[])
+ 
 
 
 
@@ -21,6 +19,8 @@ function App() {
             <Routes>
                 <Route path={"/filmsBlock"} element={<FilmsBlock/>}/>
                 <Route path={"/searchBlock"} element={<SearchBlock/>}/>
+                <Route path={"/selected"} element={<SelectedBlock/>}/>
+                <Route path={"/film"} element={<FilmCard/>}/>
             </Routes>
         </div>
     )

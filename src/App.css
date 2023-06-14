@@ -1,6 +1,7 @@
 body {
     background: #1B0301;
     padding: 0 20px;
+    color: aliceblue;
 }
 .mainBlock {
     display: flex;

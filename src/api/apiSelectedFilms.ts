@@ -23,7 +23,7 @@ export const apiAuth = {
 
 export const selectedFilms = {
     add() {
-        return instance.post("/movies", {
+        return instance.post('/movies', {
             country: "США",
             director: "Дуэйн Данэм",
             duration: 84,
@@ -36,5 +36,25 @@ export const selectedFilms = {
             thumbnail: "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/d3fe26a7-8626-40ae-a26f-c5729dfaf038/300x450",
             movieId: 123456789,
         })
+    },
+
+    fetchFilms () {
+        return instance.get<SelectedMovieType[]>('/movies')
     }
+}
+
+
+
+export type SelectedMovieType = {
+    country: string;
+    director: string;
+    duration: number;
+    year: string;
+    description: string;
+    nameRU: string;
+    nameEN: string;
+    image: string;
+    trailer: string;
+    thumbnail: string;
+    movieId: number;
 }

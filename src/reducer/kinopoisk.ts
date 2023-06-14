@@ -11,7 +11,7 @@ const initialState: MovieDocument[] = []
 export const getFilm = createAppAsyncThunk<{ films: MovieDocument[] }, void>(
     'film/getFilm', async (_, thunkAPI) => {
             try {
-                const response = await ApiKinopoisk.getFilm()
+                const response = await ApiKinopoisk.getFilms()
                 return {
                     films: response.data.docs
                 }

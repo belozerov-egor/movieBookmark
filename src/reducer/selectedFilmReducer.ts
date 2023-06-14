@@ -1,26 +1,13 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, isAction} from "@reduxjs/toolkit";
 import {createAppAsyncThunk} from "../utils/createAppAsyncThunk.ts";
-import {selectedFilms} from "../api/apiSelectedFilms.ts";
+import {SelectedMovieType, selectedFilms} from "../api/apiSelectedFilms.ts";
 
 
 
 
-const initialState: any= []
+const initialState: SelectedMovieType[]= []
 
 
-// export const searchFilms = createAppAsyncThunk<{ searchFilms: SearchFilmType[] }, { title: string }>(
-//     'film/searchFilms', async (arg, thunkAPI) => {
-//         try {
-//             const response = await ApiKinopoisk.searchFilm(arg.title)
-//             return {
-//                 searchFilms: response.data.docs
-//             }
-//         }catch (e){
-//             console.log(e)
-//             return thunkAPI.rejectWithValue(null)
-//         }
-//     }
-// )
 
 export const addSelectedFilm = createAppAsyncThunk<any, void>(
     'film/addSelectedFilm' , async (_, thunkAPI)=> {
@@ -28,6 +15,21 @@ export const addSelectedFilm = createAppAsyncThunk<any, void>(
             const response = await selectedFilms.add()
             return {
                 newFilm: response.data
+            }
+        }catch (e){
+            console.log(e)
+            return thunkAPI.rejectWithValue(null)
+        }
+    }
+)
+export const getFilms = createAppAsyncThunk<{films: SelectedMovieType[]}, void>(
+    'film/getFilms' , async (_, thunkAPI)=> {
+        try {
+            const response = await selectedFilms.fetchFilms()
+            console.log(response.data);
+            
+            return {
+                films: response.data
             }
         }catch (e){
             console.log(e)
@@ -44,6 +46,8 @@ const slice = createSlice({
     extraReducers: builder => {
         builder.addCase(addSelectedFilm.fulfilled, (state, action)=> {
             state.push(action.payload.newFilm)
+        }).addCase(getFilms.fulfilled, (_, action)=> {
+            return action.payload.films
         })
     }
 })
@@ -51,4 +55,4 @@ const slice = createSlice({
 
 export const selectedFilmsReducer = slice.reducer
 export const selectedFilmsAction = slice.actions
-export const selectedFilmsThunks = {addSelectedFilm}
+export const selectedFilmsThunks = {addSelectedFilm,getFilms}
