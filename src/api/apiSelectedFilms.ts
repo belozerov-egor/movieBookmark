@@ -22,20 +22,20 @@ export const apiAuth = {
 }
 
 export const selectedFilms = {
-    add() {
-        return instance.post('/movies', {
-            country: "США",
-            director: "Дуэйн Данэм",
-            duration: 84,
-            year: "1993",
-            description: "Собаки и кошка преодолевают реки и горы в поисках хозяев. История о том, как сближают совместные приключения",
-            nameRU: "Дорога домой",
-            nameEN: "Homeward Bound",
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/d3fe26a7-8626-40ae-a26f-c5729dfaf038/300x450",
-            trailer: "https://youtu.be/B9klOvnMne0",
-            thumbnail: "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/d3fe26a7-8626-40ae-a26f-c5729dfaf038/300x450",
-            movieId: 123456789,
-        })
+    add(film: SelectedMovieType) {
+        return instance.post('/movies', film
+            // country: "США",
+            // director: "Дуэйн Данэм",
+            // duration: 84,
+            // year: "1993",
+            // description: "Собаки и кошка преодолевают реки и горы в поисках хозяев. История о том, как сближают совместные приключения",
+            // nameRU: "Дорога домой",
+            // nameEN: "Homeward Bound",
+            // image: "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/d3fe26a7-8626-40ae-a26f-c5729dfaf038/300x450",
+            // trailer: "https://youtu.be/B9klOvnMne0",
+            // thumbnail: "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/d3fe26a7-8626-40ae-a26f-c5729dfaf038/300x450",
+            // movieId: 123456789,
+        )
     },
 
     fetchFilms () {

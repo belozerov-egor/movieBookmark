@@ -9,10 +9,26 @@ const initialState: SelectedMovieType[]= []
 
 
 
-export const addSelectedFilm = createAppAsyncThunk<any, void>(
+export const addSelectedFilm = createAppAsyncThunk<{newFilm: SelectedMovieType}, void>(
     'film/addSelectedFilm' , async (_, thunkAPI)=> {
         try {
-            const response = await selectedFilms.add()
+            const state = thunkAPI.getState()
+            const currentFilm = state.movie
+            const model: SelectedMovieType = {
+                country: currentFilm.countries[0].name,
+                director: currentFilm.persons[0].name,
+                duration: currentFilm.movieLength,
+                year: currentFilm.year.toString(),
+                description: currentFilm.description,
+                nameRU: currentFilm.name,
+                nameEN: currentFilm.alternativeName,
+                image: currentFilm.poster.previewUrl,
+                trailer: currentFilm.videos?.trailers?.[0].url,
+                thumbnail:  currentFilm.poster.url,
+                movieId: currentFilm.id           
+              }
+            
+            const response = await selectedFilms.add(model)
             return {
                 newFilm: response.data
             }
@@ -25,6 +41,7 @@ export const addSelectedFilm = createAppAsyncThunk<any, void>(
 export const getFilms = createAppAsyncThunk<{films: SelectedMovieType[]}, void>(
     'film/getFilms' , async (_, thunkAPI)=> {
         try {
+            
             const response = await selectedFilms.fetchFilms()
             console.log(response.data);
             
