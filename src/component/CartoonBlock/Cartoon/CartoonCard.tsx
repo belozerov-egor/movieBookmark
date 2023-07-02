@@ -1,6 +1,6 @@
 import {MovieDocument} from "../../../api/apiKinopoisk.ts";
 import {FC} from "react";
-import "./filmCard.scss"
+import "../../FlimsBlock/FilmCard/filmCard.scss"
 import { useAppDispatch } from "../../../hook/hooks.ts";
 import { movieThunks } from "../../../reducer/movieReducer.ts";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ type PropsType = {
 
 
 
-export const FilmCard: FC<PropsType> = ({film}) => {
+export const CartoonCard: FC<PropsType> = ({film}) => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const genreFilms = film.genres.map((genre, index)=> {
@@ -32,11 +32,7 @@ export const FilmCard: FC<PropsType> = ({film}) => {
     return (
         <div className="card">
             <div className = "imgBlock">
-                {film.poster && film.poster.url ? (
-                    <img onClick={aboutFilm} src={film.poster.url} alt="Poster" />
-                ) : (
-                    <img src={film.poster?.url} alt="Poster" />
-                )}
+                {film.poster.url ? <img onClick={aboutFilm} src={film.poster.url}/> :  <img src={film.poster.url}/>}
                 <div>{film.name}</div>
                 <div>{genreFilms}</div>
             </div>

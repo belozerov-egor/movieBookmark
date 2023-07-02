@@ -8,11 +8,28 @@ const instance = axios.create({
 });
 
 export const ApiKinopoisk = {
-  getFilms() {
-    return instance.get<MovieDocumentsResponse<MovieDocument[]>>("v1.3/movie");
+  getFilms(option: any) {
+    return instance.get<MovieDocumentsResponse<MovieDocument[]>>("v1.3/movie", {
+      params: {
+        page: option.page,
+        limit:option.limit,
+        type: option.type,
+        year: option.year
+      }
+    });
   },
   getFilm(movieId: number) {
     return instance.get(`v1.3/movie/${movieId}`);
+  },
+  getMoviesWithOptions(options: MovieOptions) {
+    return instance.get<MovieDocumentsResponse<MovieDocument[]>>("v1.3/movie", {
+      params: {
+        page: options.page,
+        limit: options.limit,
+        type: options.type,
+        year: options.year
+      },
+    });
   },
   searchFilm(title: string) {
     return instance.get<MovieDocumentsResponse<SearchFilmType[]>>(
@@ -27,6 +44,14 @@ export const ApiKinopoisk = {
     );
   },
 };
+
+type MovieOptions = {
+  limit: number;
+  type: string;
+  page: number;
+  year: number
+};
+
 
 type MovieDocumentsResponse<T> = {
   docs: T;

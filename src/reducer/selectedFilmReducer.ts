@@ -1,8 +1,6 @@
-import {createSlice, isAction} from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 import {createAppAsyncThunk} from "../utils/createAppAsyncThunk.ts";
-import {SelectedMovieType, selectedFilms} from "../api/apiSelectedFilms.ts";
-
-
+import {selectedFilms, SelectedMovieType} from "../api/apiSelectedFilms.ts";
 
 
 const initialState: SelectedMovieType[]= []
@@ -25,9 +23,9 @@ export const addSelectedFilm = createAppAsyncThunk<{newFilm: SelectedMovieType},
                 image: currentFilm.poster.previewUrl,
                 trailer: currentFilm.videos?.trailers?.[0].url,
                 thumbnail:  currentFilm.poster.url,
-                movieId: currentFilm.id           
+                movieId: currentFilm.id
               }
-            
+
             const response = await selectedFilms.add(model)
             return {
                 newFilm: response.data
@@ -41,10 +39,10 @@ export const addSelectedFilm = createAppAsyncThunk<{newFilm: SelectedMovieType},
 export const getFilms = createAppAsyncThunk<{films: SelectedMovieType[]}, void>(
     'film/getFilms' , async (_, thunkAPI)=> {
         try {
-            
+
             const response = await selectedFilms.fetchFilms()
             console.log(response.data);
-            
+
             return {
                 films: response.data
             }

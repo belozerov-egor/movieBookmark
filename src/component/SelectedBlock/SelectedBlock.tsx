@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hook/hooks';
 import { selectedFilmsThunks } from '../../reducer/selectedFilmReducer';
+import style from './SelectedBlock.module.scss'
 
 export const SelectedBlock = () => {
 
@@ -14,7 +15,7 @@ export const SelectedBlock = () => {
     const selectedMapped = selectedFilms.map(el=> <div><img src={el.image} alt="" /></div>)
 
     return (
-        <div>
+        <div className={style.filmsBlock}>
            {selectedMapped}
         </div>
     );
