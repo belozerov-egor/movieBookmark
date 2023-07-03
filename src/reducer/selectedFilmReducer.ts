@@ -15,7 +15,7 @@ export const addSelectedFilm = createAppAsyncThunk<{newFilm: SelectedMovieType},
             const model: SelectedMovieType = {
                 country: currentFilm.countries[0].name,
                 director: currentFilm.persons[0].name,
-                duration: currentFilm.movieLength,
+                duration: currentFilm.type !== 'tv-series' ? currentFilm.movieLength : 1,
                 year: currentFilm.year.toString(),
                 description: currentFilm.description,
                 nameRU: currentFilm.name,

@@ -2,23 +2,23 @@ import {useAppDispatch, useAppSelector} from "../../hook/hooks.ts";
 import {kinopoiskThunks} from "../../reducer/kinopoisk.ts";
 import "../FlimsBlock/filmBlock.scss"
 import {useEffect} from "react";
-import {CartoonCard} from "./Cartoon/CartoonCard.tsx";
+import {SeriesCard} from "./Series/SeriesCard.tsx";
 
 
 
-export const CartoonBlock = () => {
+export const SeriesBlock = () => {
 
     const dispatch = useAppDispatch()
-    const cartoons = useAppSelector(state=> state.films.cartoons)
+    const cartoons = useAppSelector(state=> state.films.series)
 
 
     useEffect( ()=> {
-        dispatch(kinopoiskThunks.getTopCartoon())
+        dispatch(kinopoiskThunks.getTopSeries())
     },[])
 
     const filmsMap = cartoons.map(el=> {
         return (
-            <CartoonCard key={el.id} film={el}/>
+            <SeriesCard key={el.id} film={el}/>
         )
     })
     return (

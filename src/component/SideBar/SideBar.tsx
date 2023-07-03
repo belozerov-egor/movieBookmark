@@ -10,7 +10,7 @@ export const SideBar = () => {
         <div className={style.sideBar}>
             <SearchBlock/>
             <div className={style.linkBlock}>
-                <NavLink to={'/filmsBlock'}>ВСЕ ФИЛЬМЫ</NavLink>
+                <NavLink to={'/'}>ВСЕ ФИЛЬМЫ</NavLink>
                 <NavLink to={'/selected'}>ИЗБРАННОЕ</NavLink>
             </div>
         </div>
